@@ -5,21 +5,8 @@
 ******************************************************************************/
 
 #include<iostream>
-#include<fstream>
 #include<string>
-#include<vector>
 #include"helper.cpp"
-
-
-struct node{
-	int data;
-	node* next;
-	node* next2;
-};
-
-node* copyList(node* head);
-node* finishList(node* head, node* newHead);
-
 
 int main()
 {
@@ -31,7 +18,6 @@ int main()
 	std::string stringPrompt = "What message would you like to encrypt?";
 	std::string decryptPrompt = "What message would you like to decrypt?";
 	std::string cipherPrompt = "Enter the cipher string";
-
 
 	helper::splashScreen(" ENCRYPT / DECRYPT ",1);
 
@@ -61,7 +47,6 @@ int main()
 					if(k == cipher.length())
 						k = 0;	
 
-					//std::cout << encryptString[i] << " goes to ";
 					for(int j = 0; j < cipher[k]; j++)
 					{
 						if(encryptString[i] == 126)
@@ -70,19 +55,16 @@ int main()
 							encryptString[i]++;
 					}	
 
-					//std::cout << encryptString[i] << std::endl;
-
 					k++;
 				}
 				
 				std::cout << "Encrypted message: " << encryptString << std::endl;
 
+				helper::newLine(2);
 				break;
 			}
 			case 2:
 			{
-
-				
 				std::string encryptString = helper::getString(decryptPrompt);
 				std::string cipher = helper::getString(cipherPrompt);
 
@@ -96,7 +78,6 @@ int main()
 					if(k == cipher.length())
 						k = 0;	
 
-					//std::cout << encryptString[i] << " goes to ";
 					for(int j = 0; j < cipher[k]; j++)
 					{
 						if(encryptString[i] == 32)
@@ -105,22 +86,25 @@ int main()
 							encryptString[i]--;
 					}	
 
-					//std::cout << encryptString[i] << std::endl;
-
 					k++;
 				}
 
 				std::cout << "Decrypted message: " << encryptString << std::endl;
 
+				helper::newLine(2);
 				break;
 			}
 
 		}
-		
 
+		choice = helper::getInt(1, "Enter 1 to continue, 0 to exit");
+		if(choice == 0)
+			break;
+		else
+			choice = 1;
 
-
-		choice = helper::getInt(1, "Enter 1 to continue");
+		helper::newLine(2);
 	}	
+
 	return 0;
 }
